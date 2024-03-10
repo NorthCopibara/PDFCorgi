@@ -1,37 +1,23 @@
-from PyPDF2 import PdfFileReader
+from Calc import clac_table
 
-from ClearCheckboxes import remove_all_checkboxes
-from FindYesIndexes import find_yes
-from GetTables import extract_table
+file_path = "Test.pdf"
+file_path_result = "Test_result.pdf"
+#remove_all_checkboxes(file_path, file_path_result,'/Yes')
 
-file_path = "TargetPdf.pdf"
-remove_all_checkboxes(file_path, '/Yes')
+class Target:
+    page_id = 0
+    table_id = 0
+    indexes = [0]
 
-#result = find_yes(file_path)
+    def get_index(self, id):
+        return self.indexes[id]
 
-#result = extract_table(file_path)
+    def __init__(self, page_id, table_id):
+        self.page_id = page_id
+        self.table_id = table_id
 
-#print(result)
 
-pdf = open(file_path, 'rb')
-reader = PdfFileReader(pdf)
-
-info = reader.metadata
-
-def extract_form_value(path):
-    with open(path, 'rb') as file:
-        if not reader.get_fields():
-            return
-
-        print(reader.get_fields())
-
-        form_fields = reader.get_fields()
-        field_values = {}
-
-        for field_name, field_data in form_fields.items():
-            field_values[field_name] = field_data.get('/V', None)
-
-        return field_values
-
-form_values = extract_form_value(file_path)
-print(form_values)
+target = Target(4, 0)
+target.indexes = [81, 82, 83, 84, 85, 86]
+calc_result = clac_table(file_path, target)
+print(calc_result)

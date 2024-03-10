@@ -1,32 +1,33 @@
-from PyPDF2 import PdfFileReader, PdfReader, PdfWriter
-from PyPDF2.generic import NameObject
+from PyPDF2 import PdfFileReader, PdfReader, PdfWriter, PdfFileWriter
+from PyPDF2.generic import NameObject, ContentStream
 
 
-def remove_all_checkboxes(path, target):
-    reader = PdfReader(path)
+def remove_all_checkboxes(path, path_result, target):
+
     writer = PdfWriter()
+    reader = PdfReader(path)
 
     for pageIdx in range(reader.numPages):
         page = reader.pages[pageIdx]
+
         writer.add_page(page)
 
         if '/Annots' not in page:
             continue
 
         for i in range(len(page["/Annots"])):  # in order to access the "Annots" key
-            print((page["/Annots"][i].get_object()))
+            ant = page["/Annots"][i].get_object()
 
-            if '/FT' not in page["/Annots"][i].get_object():
+            if '/FT' not in ant:
                 continue
 
-            if (page["/Annots"][i].get_object())['/FT'] == "/Btn":
-                writer_annot = page["/Annots"][i].get_object()
-                writer_annot.update(
+            if ant['/FT'] == "/Btn":
+                ant.update(
                     {
-                        #NameObject("/V"): NameObject(target),
-                        #NameObject("/AS"): NameObject(target)
+                        NameObject("/V"): NameObject(target),
+                        NameObject("/AS"): NameObject(target)
                     }
                 )
 
-                with open(path, "wb") as output_stream:
-                    writer.write(output_stream)
+    with open(path_result, "wb") as output_stream:
+        writer.write(output_stream)
