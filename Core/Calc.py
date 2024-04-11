@@ -1,5 +1,4 @@
 import re
-import pdfplumber
 
 from Core.FindYesIndexes import find_yes
 
@@ -9,10 +8,9 @@ pattern = r'^(0|\d{1,3}( \d{3})*(,\d{2})?)$'
 last_row = 0
 additional_row = 0
 
-def clac_table(file_path, target):
+def clac_table(pdf_file, pdf_reader, target):
     global last_row, additional_row
-    pdf = pdfplumber.open(file_path)
-    table_page = pdf.pages[target.page_id]
+    table_page = pdf_file.pages[target.page_id]
     table = table_page.extract_tables()[target.table_id]
 
     result: float = 0.0
@@ -25,7 +23,7 @@ def clac_table(file_path, target):
             if row_num - 1 >= len(target.indexes):
                 continue
 
-            check_result = find_yes(file_path, target.get_index(row_num - 1 + additional_row))
+            check_result = find_yes(pdf_reader, target.get_index(row_num - 1 + additional_row))
             if not check_result:
                 continue
 
