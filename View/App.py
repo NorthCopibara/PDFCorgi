@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
 
     def calc(self):
         result = CalculateSumm.calculate(self.path_text.text())
-        self.result_text.setText('Результат: {0}'.format(1333151656549111111111))
+        self.result_text.setText(str(result))
 
     def find_folder_path(self):
         filetypes = (('pfd files', '*.pdf'), ('All files', '*.*'))

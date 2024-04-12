@@ -10,3 +10,5 @@ def print_all_yes(path):
     for field_name, field_data in form_fields.items():
         if check_box_mask in field_name and field_data.get('/V') == "/Yes":
             print(field_name)
+
+    pdfFileObj.close()

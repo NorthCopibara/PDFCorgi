@@ -6,11 +6,12 @@ import pdfplumber
 
 from Core.Calc import clac_table
 from Core.ReadPdfConfig import get_pdf_config
-from Resources.Config import MAIN_PATH, PDF_CONFIG_PATH
+from Resources.Config import PDF_CONFIG_PATH, PDF_CONFIG_PATH_AVANGARD_4
+
 
 def calculate(path_text):
     ##TODO: get file path
-    targets = get_pdf_config(PDF_CONFIG_PATH)
+    targets = get_pdf_config(PDF_CONFIG_PATH_AVANGARD_4)
 
     calc_result = 0.0
 
