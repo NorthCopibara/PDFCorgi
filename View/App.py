@@ -17,6 +17,11 @@ class MainWindow(QMainWindow):
         uic.loadUi('CalcUI.ui', self)
 
         self.path_text.setText(LoadPath())
+        if self.path_text.text() != '':
+            config = CalculateSumm.get_info_by_file(self.path_text.text())
+
+            self.model_text.setText(str(config.name))
+            self.price_text.setText(str(config.price) + ' руб.')
 
         self.setWindowTitle('Pdf')
         self.calc_but.clicked.connect(self.calc)
@@ -24,7 +29,9 @@ class MainWindow(QMainWindow):
 
     def calc(self):
         result = CalculateSumm.calculate(self.path_text.text())
-        self.result_text.setText(str(result))
+        self.dop_result_text.setText(str(result) + ' руб.')
+        config = CalculateSumm.get_info_by_file(self.path_text.text())
+        self.all_result_text.setText(str(result + config.price) + ' руб.')
 
     def find_folder_path(self):
         filetypes = (('pfd files', '*.pdf'), ('All files', '*.*'))
@@ -32,6 +39,10 @@ class MainWindow(QMainWindow):
         self.path_text.setText(f.title())
         SavePath(f.title())
         config = CalculateSumm.get_info_by_file(f.title())
+
+        self.model_text.setText(config.name)
+        self.price_text.setText(str(config.price) + ' руб.')
+
         print(config.path)
         print(config.price)
         print(config.articul)
@@ -39,7 +50,7 @@ class MainWindow(QMainWindow):
 app = QApplication(sys.argv)
 
 window = MainWindow()
-window.setFixedSize(320, 200)
+window.setFixedSize(600, 230)
 window.show()
 
 app.exec()
