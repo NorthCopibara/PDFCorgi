@@ -22,6 +22,9 @@ class MainWindow(QMainWindow):
 
             self.model_text.setText(str(config.name))
             self.price_text.setText(str(config.price) + ' руб.')
+            self.calc_but.blockSignals(False)
+        else:
+            self.calc_but.blockSignals(True)
 
         self.setWindowTitle('Pdf')
         self.calc_but.clicked.connect(self.calc)
@@ -38,14 +41,23 @@ class MainWindow(QMainWindow):
         f = fd.askopenfilename(filetypes=filetypes, initialdir="D:/Downloads")
         self.path_text.setText(f.title())
         SavePath(f.title())
+
         config = CalculateSumm.get_info_by_file(f.title())
 
-        self.model_text.setText(config.name)
-        self.price_text.setText(str(config.price) + ' руб.')
+        if config.price != '':
+            self.model_text.setText(config.name)
+            self.price_text.setText(str(config.price) + ' руб.')
 
-        print(config.path)
-        print(config.price)
-        print(config.articul)
+            print(config.path)
+            print(config.price)
+            print(config.articul)
+
+            self.calc_but.blockSignals(False)
+        else:
+            self.calc_but.blockSignals(True)
+
+
+
 
 app = QApplication(sys.argv)
 
