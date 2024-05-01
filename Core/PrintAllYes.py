@@ -9,6 +9,6 @@ def print_all_yes(path):
     form_fields = pdfReader.getFields()
     for field_name, field_data in form_fields.items():
         if check_box_mask in field_name and field_data.get('/V') == "/Yes":
-            print(field_name)
+            print(field_name.replace(check_box_mask, ""))
 
     pdfFileObj.close()

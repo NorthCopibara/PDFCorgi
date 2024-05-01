@@ -1,17 +1,45 @@
-import asyncio
 import timeit
 
 import PyPDF2
-import pdfplumber
 
 from Core.Calc import clac_table
 from Core.ReadPdfConfig import get_pdf_config
-from Resources.Config import PDF_CONFIG_PATH, PDF_CONFIG_PATH_AVANGARD_4
+from Resources import Config
+
+target_line = 'Артикул: '
+target_line_2 = 'Артикулы: '
+
+
+def get_info_by_file(path):
+    reader = PyPDF2.PdfFileReader(path)
+
+    configs = Config.get_configs()
+
+    lines = reader.pages[0].extractText().split('\n')
+    articul = ''
+    for text in lines:
+        if (target_line in text):
+            text.replace(' ', '')
+            print(text.replace(target_line, ''))
+            articul = text.replace(target_line, '')
+            break
+
+        if target_line_2 in text:
+            result = text.replace(target_line_2, '')
+            result = result.replace(' ', '')
+            print(result.replace(';', ''))
+            articul = result.replace(';', '')
+            break
+
+    if articul != '':
+        for config in configs:
+            if config.articul == articul:
+                return config
 
 
 def calculate(path_text):
-    ##TODO: get file path
-    targets = get_pdf_config(PDF_CONFIG_PATH_AVANGARD_4)
+    config = get_info_by_file(path_text)
+    targets = get_pdf_config(config.path)
 
     calc_result = 0.0
 
@@ -23,18 +51,15 @@ def calculate(path_text):
         return 'Пустой путь'
     else:
         path = path_text
-    pdf_file = pdfplumber.open(path)
     pdf_obj = open(path, 'rb')
     pdf_reader = PyPDF2.PdfFileReader(pdf_obj)
     ##---Open---
 
     ##---Operate---
-    for target in targets:
-        calc_result += clac_table(pdf_file, pdf_reader, target)
+    calc_result = clac_table(pdf_reader, targets)
     ##---Operate---
 
     ##---Close---
-    pdf_file.close()
     pdf_obj.close()
     ##---Close---
 

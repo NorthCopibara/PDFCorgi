@@ -6,4 +6,4 @@ name_2 = 'Avantgarde_Teen_2024_retail.pdf'
 name_3 = 'Motus_2_CS_2024_retail.pdf'
 name_4 = 'Motus_2_CV_2024_retail.pdf'
 
-print_all_yes(path + name_1)
+print_all_yes(path + name_4)

@@ -31,6 +31,10 @@ class MainWindow(QMainWindow):
         f = fd.askopenfilename(filetypes=filetypes, initialdir="D:/Downloads")
         self.path_text.setText(f.title())
         SavePath(f.title())
+        config = CalculateSumm.get_info_by_file(f.title())
+        print(config.path)
+        print(config.price)
+        print(config.articul)
 
 app = QApplication(sys.argv)
 
