@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         config = CalculateSumm.get_info_by_file(f.title())
 
         if config.price != '':
-            self.model_text.setText(config.name)
+            self.model_text.setText(str(config.name))
             self.price_text.setText(str(config.price) + ' руб.')
 
             print(config.path)

@@ -66,7 +66,6 @@ def calculate(path_text):
     end_time = timeit.default_timer()
 
     ##---DrawResult---
-    ##TODO: view result
     print("Result: ", calc_result)
 
     print("Time: ", end_time - start_time)
