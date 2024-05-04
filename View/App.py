@@ -1,13 +1,17 @@
 from turtle import fd
 
 from tkinter import filedialog as fd
-from PyQt6.QtWidgets import QApplication, QMainWindow
+
+import tkinter as tk
+from tkinter import filedialog
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
 import sys
 
 from PyQt6 import uic
 
 from Main import CalculateSumm
 from Save.SaveLoadLastFilePath import LoadPath, SavePath
+
 
 
 class MainWindow(QMainWindow):
@@ -37,12 +41,14 @@ class MainWindow(QMainWindow):
         self.all_result_text.setText(str(result + config.price) + ' руб.')
 
     def find_folder_path(self):
-        filetypes = (('pfd files', '*.pdf'), ('All files', '*.*'))
-        f = fd.askopenfilename(filetypes=filetypes, initialdir="D:/Downloads")
-        self.path_text.setText(f.title())
-        SavePath(f.title())
+        file_name = QFileDialog.getOpenFileName(self, "Find pdf", None, "Pdf (*.pdf)")[0]
+        if not file_name:
+            return
 
-        config = CalculateSumm.get_info_by_file(f.title())
+        self.path_text.setText(file_name)
+        SavePath(file_name)
+
+        config = CalculateSumm.get_info_by_file(file_name)
 
         if config.price != '':
             self.model_text.setText(str(config.name))
@@ -58,8 +64,8 @@ class MainWindow(QMainWindow):
 
 
 
-
 app = QApplication(sys.argv)
+
 
 window = MainWindow()
 window.setFixedSize(600, 230)
