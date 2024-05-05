@@ -1,18 +1,12 @@
-from turtle import fd
 
-from tkinter import filedialog as fd
 
-import tkinter as tk
-from tkinter import filedialog
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
 import sys
 
 from PyQt6 import uic
 
 from Main import CalculateSumm
-from Save.SaveLoadLastFilePath import LoadPath, SavePath
-
-
+#from Save.SaveLoadLastFilePath import LoadPath, SavePath
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -20,7 +14,7 @@ class MainWindow(QMainWindow):
 
         uic.loadUi('CalcUI.ui', self)
 
-        self.path_text.setText(LoadPath())
+        #self.path_text.setText(LoadPath())
         if self.path_text.text() != '':
             config = CalculateSumm.get_info_by_file(self.path_text.text())
 
@@ -46,7 +40,7 @@ class MainWindow(QMainWindow):
             return
 
         self.path_text.setText(file_name)
-        SavePath(file_name)
+        #SavePath(file_name)
 
         config = CalculateSumm.get_info_by_file(file_name)
 
@@ -63,12 +57,8 @@ class MainWindow(QMainWindow):
             self.calc_but.blockSignals(True)
 
 
-
 app = QApplication(sys.argv)
-
-
 window = MainWindow()
 window.setFixedSize(600, 230)
 window.show()
-
-app.exec()
+sys.exit(app.exec())

@@ -1,6 +1,6 @@
 from Core.InfoPdfData import InfoPdfData
 
-SAVE_DATA_PATH = '../Resources/SavedPath.txt'
+SAVE_DATA_PATH = 'Resources/SavedPath.txt'
 
 NAME_AVANGARD_4 = 'Авангард 4'
 PDF_CONFIG_PATH_AVANGARD_4 = '../Resources/Avangard_4.csv'

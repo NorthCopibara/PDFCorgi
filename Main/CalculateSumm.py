@@ -4,7 +4,7 @@ import PyPDF2
 
 from Core.Calc import clac_table
 from Core.ReadPdfConfig import get_pdf_config
-from Resources import Config
+import Config
 
 target_line = 'Артикул: '
 target_line_2 = 'Артикулы: '
