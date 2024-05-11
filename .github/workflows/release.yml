@@ -52,4 +52,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./dist/Pdf Corgi.app
           asset_name: Pdf Corgi.app
-          asset_content_type: application/vnd.debian.binary-package
+          asset_content_type: application/zip
