@@ -11,8 +11,7 @@ OPTIONS = {
         'Resources/Avangard_4.csv',
         'Resources/Avangard_TEEN.csv',
         'Resources/Motus_2_CS.csv',
-        'Resources/Motus_2_CV.csv',
-        'Resources/SavedPath.txt'],
+        'Resources/Motus_2_CV.csv'],
     'packages': ['PyPDF2', 'timeit', 'csv'],
     'argv_emulation': True
 }
