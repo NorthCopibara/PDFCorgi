@@ -34,6 +34,13 @@ jobs:
 
       - name: Build package
         run: python setup.py py2app
+
+      - name: Download the artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: my-artifact
+          path: ./
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
