@@ -35,6 +35,13 @@ jobs:
       - name: Build package
         run: python setup.py py2app
 
+      - name: Set permissions for folder
+        id: set-permissions
+        uses: actions/set-file-permissions@v1
+        with:
+          folder: ./dist/Pdf Corgi.app
+          mode: '755'
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -42,7 +49,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.run_number }}
-          release_name: Pdf Corgi ${{ github.run_number }}
+          release_name: Pdf Corgi 0.0.${{ github.run_number }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -53,5 +60,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./dist/Pdf Corgi.app
-          asset_name: Pdf Corgi ${{ github.run_number }}.app
+          asset_name: Pdf Corgi 0.0.${{ github.run_number }}.app
           asset_content_type: application/zip
