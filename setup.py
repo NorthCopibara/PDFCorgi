@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-APP_NAME = 'Pdf Corgi'
+APP_NAME = 'PdfCorgi'
 APP = ['App.py']
 DATA_FILES = []
 OPTIONS = {
