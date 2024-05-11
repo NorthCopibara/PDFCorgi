@@ -10,7 +10,6 @@ permissions:
       contents: write
       pull-requests: write
       repository-projects: write
-      security-events: read
 jobs:
   build:
 
@@ -45,13 +44,6 @@ jobs:
           release_name: Pdf Corgi 0.0.${{ github.run_number }}
           draft: false
           prerelease: false
-
-      - name: Set permissions for folder
-        id: set-permissions
-        uses: actions/set-file-permissions@v1
-        with:
-          folder: ./dist/
-          mode: '755'
 
       - name: Upload Release Asset
         id: upload-release-asset
