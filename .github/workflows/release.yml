@@ -4,14 +4,19 @@ on:
   push:
     branches:
       - release
+  workflow_dispatch:
 
+permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
 jobs:
   build:
 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [macos-latest]
         python-version: ["3.11"]
 
     steps:
