@@ -10,7 +10,7 @@ permissions:
       contents: write
       pull-requests: write
       repository-projects: write
-      security-events: read|write|none
+      security-events: read
 jobs:
   build:
 
