@@ -9,7 +9,7 @@ on:
 permissions:
       contents: write
       pull-requests: write
-      repository-projects: read|write|none
+      repository-projects: read
 jobs:
   build:
 
