@@ -5,6 +5,7 @@ import sys
 
 from PyQt6 import uic
 
+import Config
 from Calculations import CalculateSumm
 #from Save.SaveLoadLastFilePath import LoadPath, SavePath
 
@@ -12,7 +13,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        uic.loadUi('./View/CalcUI.ui', self)
+        uic.loadUi(Config.UI_PATH, self)
 
         #self.path_text.setText(LoadPath())
         if self.path_text.text() != '':

@@ -1,4 +1,10 @@
+import os
+
 from Core.InfoPdfData import InfoPdfData
+
+IS_RELEASE = False #TODO
+
+UI_PATH = '../Resources/CalcUI.ui' if IS_RELEASE else './View/CalcUI.ui'
 
 SAVE_DATA_PATH = 'Resources/SavedPath.txt'
 
@@ -28,15 +34,20 @@ ARTICUL_MOTION_2_CV = '480F61=2_AA02_C'
 
 
 def get_configs():
-    config_avangard_4 = InfoPdfData(NAME_AVANGARD_4, PDF_CONFIG_PATH_AVANGARD_4, PRICE_AVANGARD_4, ARTICUL_AVANGARD_4)
 
-    config_avangard_teen = InfoPdfData(NAME_AVANGARD_TEEN, PDF_CONFIG_PATH_AVANGARD_TEEN, PRICE_AVANGARD_TEEN,
+    path_1 = PDF_CONFIG_PATH_AVANGARD_4_release if IS_RELEASE else PDF_CONFIG_PATH_AVANGARD_4
+    config_avangard_4 = InfoPdfData(NAME_AVANGARD_4, path_1, PRICE_AVANGARD_4, ARTICUL_AVANGARD_4)
+
+    path_2 = PDF_CONFIG_PATH_AVANGARD_TEEN_release if IS_RELEASE else PDF_CONFIG_PATH_AVANGARD_TEEN
+    config_avangard_teen = InfoPdfData(NAME_AVANGARD_TEEN, path_2, PRICE_AVANGARD_TEEN,
                                        ARTICUL_AVANGARD_TEEN)
 
-    config_motion_cs = InfoPdfData(NAME_MOTION_2_CS, PDF_CONFIG_PATH_MOTION_2_CS, PRICE_MOTION_2_CS,
+    path_3 = PDF_CONFIG_PATH_MOTION_2_CS_release if IS_RELEASE else PDF_CONFIG_PATH_MOTION_2_CS
+    config_motion_cs = InfoPdfData(NAME_MOTION_2_CS, path_3, PRICE_MOTION_2_CS,
                                    ARTICUL_MOTION_2_CS)
 
-    config_motion_cv = InfoPdfData(NAME_MOTION_2_CV, PDF_CONFIG_PATH_MOTION_2_CV, PRICE_MOTION_2_CV,
+    path_4 = PDF_CONFIG_PATH_MOTION_2_CV_release if IS_RELEASE else PDF_CONFIG_PATH_MOTION_2_CV
+    config_motion_cv = InfoPdfData(NAME_MOTION_2_CV, path_4, PRICE_MOTION_2_CV,
                                    ARTICUL_MOTION_2_CV)
 
     configs = []

@@ -7,7 +7,7 @@ APP = ['Main.py']
 DATA_FILES = []
 OPTIONS = {
     'resources': [
-        'CalcUI.ui',
+        'View/CalcUI.ui',
         'Resources/Avangard_4.csv',
         'Resources/Avangard_TEEN.csv',
         'Resources/Motus_2_CS.csv',
