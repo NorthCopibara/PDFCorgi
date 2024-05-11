@@ -6,8 +6,10 @@ on:
       - release
   workflow_dispatch:
 
-permissions: read-all|write-all
-
+#permissions:
+#      contents: write
+#      pull-requests: write
+#      repository-projects: write
 jobs:
   build:
 
