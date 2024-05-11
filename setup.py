@@ -3,7 +3,7 @@
 from setuptools import setup
 
 APP_NAME = 'PdfCorgi'
-APP = ['App.py']
+APP = ['Main.py']
 DATA_FILES = []
 OPTIONS = {
     'resources': [

@@ -5,14 +5,14 @@ import sys
 
 from PyQt6 import uic
 
-from Main import CalculateSumm
+from Calculations import CalculateSumm
 #from Save.SaveLoadLastFilePath import LoadPath, SavePath
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        uic.loadUi('CalcUI.ui', self)
+        uic.loadUi('./View/CalcUI.ui', self)
 
         #self.path_text.setText(LoadPath())
         if self.path_text.text() != '':
@@ -61,8 +61,9 @@ class MainWindow(QMainWindow):
             self.calc_but.blockSignals(True)
 
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.setFixedSize(600, 230)
-window.show()
-sys.exit(app.exec())
+def app_main():
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.setFixedSize(600, 230)
+    window.show()
+    sys.exit(app.exec())
