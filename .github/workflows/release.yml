@@ -26,11 +26,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Upload binaries to release
-        uses: NorthCopibara/upload-release-action@v2
+      - name: Build package
+        run: python -m build
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/fbs_tutorial_app.deb
-          asset_name: fbs_tutorial_app.deb
-          tag: ${{ github.ref }}
-          overwrite: true
+          password: ${{ secrets.PYPI_API_TOKEN }}
