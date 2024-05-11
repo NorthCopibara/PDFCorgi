@@ -35,7 +35,7 @@ jobs:
         run: python setup.py py2app
 
       - name: Create ZIP archive
-        run: zip PdfCorgi_0.0.${{ github.run_number }}.zip ./dist/PdfCorgi.app
+        run: zip -r PdfCorgi_0.0.${{ github.run_number }}.zip ./dist/PdfCorgi.app
 
       - name: Create Release
         id: create_release
